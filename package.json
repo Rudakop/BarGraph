@@ -1,0 +1,29 @@
+{
+  "name": "stimulus-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=11"
+  },
+  "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "autoprefixer": "^9",
+    "babel-loader": "^8.1.0",
+    "chokidar": "^3.5.1",
+    "el-transition": "0.0.7",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "postcss": "^7",
+    "stimulus": "^2.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "webpack": "^4.46.0",
+    "webpack-dev-middleware": "^3.7.3"
+  }
+}

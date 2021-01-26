@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="bundle.js" async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div  class="text-center m-8">
+      <h2 class="text-3xl font-sans text-white leading-tight md:items-center">Inkjet Printer</h2>
+        <select class="dropdown" id="dd">
+          <option  value="dps1" selected="selected"><p id="climate_change">climate_change</p></option>
+          <option value="dps2"><p id="energy_use">energy_use</p></option>
+        </select>
+        
+    <div id="chartContainer" class="text-center m-8 h-80 max-w-xl md:items-center md:bg-gray-700"></div>
+  
+  <script>
+
+    //var json ={"name":"Inkjet Printer","impacts":{"climate_change":{"production":45,"distribution":23,"use":12,"end_of_life":5 },"energy_use":{"production":32,"distribution":5,"use":28,"end_of_life":1}}};
+    //var myObj = JSON.parse(json);
+    //document.getElementById("climate_change").innerHTML= myObj.name;
+
+    var jsonData = {
+    "dps1": [
+        { "x": 0, "y": 45 },
+        { "x": 1, "y": 23 },
+        { "x": 2, "y": 12 },
+        { "x": 3, "y": 5 },
+      ],
+    "dps2": [
+        { "x": 0, "y": 32 },
+        { "x": 1, "y": 5 },
+        { "x": 2, "y": 28 },
+        { "x": 3, "y": 1 },
+        ],
+    }
+
+    var dataPoints = [];
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      axisX: {
+      },
+      data: [{
+        //showInLegend: true,
+        type: 'column',
+        showInLegend: true,
+        legendText: 'P   D   U   E'
+        }]
+    });
+
+    $(".dropdown" ).change(function() {
+      chart.options.data[0].dataPoints = [];
+      var e = document.getElementById("dd");
+      var selected = e.options[e.selectedIndex].value;
+      dps = jsonData[selected];
+      for(var i in dps) {
+        var xVal = dps[i].x;
+        chart.options.data[0].dataPoints.push({x: new Date(xVal), y: dps[i].y});
+      }
+      chart.render();
+    });
+
+
+  </script>
+  </div>
+  </body>
+</html>
